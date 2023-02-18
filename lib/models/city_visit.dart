@@ -1,10 +1,9 @@
 class CityVisit {
-  final String arrivalDate;
-  final String departureDate;
+  final DateTime arrivalDate;
+  final DateTime departureDate;
   final String name;
   final String country;
   final List<String> todos;
-  int daysOfStay;
 
   CityVisit._(
     this.arrivalDate,
@@ -12,17 +11,19 @@ class CityVisit {
     this.name,
     this.country,
     this.todos,
-  ) {
-    daysOfStay = 1; //TODO calculate from arrival and departure date
-  }
+  );
 
   static CityVisit of(
-    final String arrivalDate,
-    final String departureDate,
+    final DateTime arrivalDate,
+    final DateTime departureDate,
     final String name,
     final String country,
     List<String> todos,
   ) {
     return CityVisit._(arrivalDate, departureDate, name, country, todos);
+  }
+
+  int get daysOfVisit {
+    return (departureDate.difference(arrivalDate).inHours / 24).round();
   }
 }

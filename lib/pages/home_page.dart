@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../models/trip.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key, required this.title});
@@ -9,11 +10,13 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  int _counter = 0;
+  final List<Trip> _trips = [
+    Trip.of("Europa", []),
+  ];
 
-  void _incrementCounter() {
+  void _addTrip(Trip newTrip) {
     setState(() {
-      _counter++;
+      _trips.add(newTrip);
     });
   }
 
@@ -25,22 +28,29 @@ class _HomePageState extends State<HomePage> {
       ),
       body: Center(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headlineMedium,
+            Card(
+              child: Row(
+                children: [Text(_trips[0].name)],
+              ),
             ),
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
+      floatingActionButton: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          RawMaterialButton(
+            onPressed: () {},
+            child: Row(
+              children: [
+                Text("Add trip"),
+                const Icon(Icons.add),
+              ],
+            ),
+          ),
+        ],
       ),
     );
   }
