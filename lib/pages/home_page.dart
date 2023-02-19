@@ -44,7 +44,7 @@ class _HomePageState extends State<HomePage> {
       body: Center(
         child: ListView(
           //crossAxisAlignment: CrossAxisAlignment.center,
-          children: _trips.map((trip) => TripListItem(trip)).toList(),
+          children: _getTripList(_trips),
         ),
       ),
       floatingActionButton: Row(
@@ -66,5 +66,30 @@ class _HomePageState extends State<HomePage> {
         ],
       ),
     );
+  }
+
+  List<Widget> _getTripList(List<Trip> trips) {
+    if (trips.isEmpty) {
+      return [
+        Container(
+          margin: EdgeInsets.all(10),
+          padding: EdgeInsets.all(10),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Text(
+                "No trips yet!",
+                style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.grey),
+              ),
+            ],
+          ),
+        )
+      ];
+    }
+    return trips.map((trip) => TripListItem(trip)).toList();
   }
 }
