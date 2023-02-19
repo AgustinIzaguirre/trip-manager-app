@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:trip_manager/widgets/trip_list_item_widget.dart';
+import '../models/trip.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key, required this.title});
@@ -9,11 +11,26 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  int _counter = 0;
+  final List<Trip> _trips = [
+    Trip.of("Europa", []),
+    Trip.of("Europa2", []),
+    Trip.of("Europa3", []),
+    Trip.of("Europa4", []),
+    Trip.of("Europa5", []),
+    Trip.of("Europa6", []),
+    Trip.of("Europa7", []),
+    Trip.of("Europa8", []),
+    Trip.of("Europa9", []),
+    Trip.of("Europa10", []),
+    Trip.of("Europa11", []),
+    Trip.of("Europa12", []),
+    Trip.of("Europa13", []),
+    Trip.of("Europa14", []),
+  ];
 
-  void _incrementCounter() {
+  void _addTrip(Trip newTrip) {
     setState(() {
-      _counter++;
+      _trips.add(newTrip);
     });
   }
 
@@ -21,27 +38,58 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        centerTitle: true,
         title: Text(widget.title),
       ),
       body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headlineMedium,
-            ),
-          ],
+        child: ListView(
+          //crossAxisAlignment: CrossAxisAlignment.center,
+          children: _getTripList(_trips),
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
+      floatingActionButton: Row(
+        mainAxisAlignment: MainAxisAlignment.end,
+        children: [
+          RawMaterialButton(
+            onPressed: () {},
+            fillColor: Theme.of(context).primaryColor,
+            child: Row(
+              children: [
+                Text("Add trip", style: TextStyle(color: Colors.white)),
+                const Icon(
+                  Icons.add,
+                  color: Colors.white,
+                ),
+              ],
+            ),
+          ),
+        ],
       ),
     );
+  }
+
+  List<Widget> _getTripList(List<Trip> trips) {
+    if (trips.isEmpty) {
+      return [
+        Container(
+          margin: EdgeInsets.all(10),
+          padding: EdgeInsets.all(10),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Text(
+                "No trips yet!",
+                style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.grey),
+              ),
+            ],
+          ),
+        )
+      ];
+    }
+    return trips.map((trip) => TripListItem(trip)).toList();
   }
 }

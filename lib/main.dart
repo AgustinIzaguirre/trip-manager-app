@@ -16,7 +16,8 @@ class TripManager extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const HomePage(title: 'Flutter Demo Home Page'),
+      home: const HomePage(title: 'Trips'),
+      debugShowCheckedModeBanner: false,
     );
   }
 }
