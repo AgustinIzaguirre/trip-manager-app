@@ -17,6 +17,7 @@ class TripManager extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       home: const HomePage(title: 'Trips'),
+      debugShowCheckedModeBanner: false,
     );
   }
 }

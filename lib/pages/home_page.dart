@@ -16,6 +16,16 @@ class _HomePageState extends State<HomePage> {
     Trip.of("Europa2", []),
     Trip.of("Europa3", []),
     Trip.of("Europa4", []),
+    Trip.of("Europa5", []),
+    Trip.of("Europa6", []),
+    Trip.of("Europa7", []),
+    Trip.of("Europa8", []),
+    Trip.of("Europa9", []),
+    Trip.of("Europa10", []),
+    Trip.of("Europa11", []),
+    Trip.of("Europa12", []),
+    Trip.of("Europa13", []),
+    Trip.of("Europa14", []),
   ];
 
   void _addTrip(Trip newTrip) {
@@ -32,20 +42,24 @@ class _HomePageState extends State<HomePage> {
         title: Text(widget.title),
       ),
       body: Center(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
+        child: ListView(
+          //crossAxisAlignment: CrossAxisAlignment.center,
           children: _trips.map((trip) => TripListItem(trip)).toList(),
         ),
       ),
       floatingActionButton: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.end,
         children: [
           RawMaterialButton(
             onPressed: () {},
+            fillColor: Theme.of(context).primaryColor,
             child: Row(
               children: [
-                Text("Add trip"),
-                const Icon(Icons.add),
+                Text("Add trip", style: TextStyle(color: Colors.white)),
+                const Icon(
+                  Icons.add,
+                  color: Colors.white,
+                ),
               ],
             ),
           ),
