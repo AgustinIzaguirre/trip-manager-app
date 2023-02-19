@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:trip_manager/widgets/trip_list_item_widget.dart';
 import '../models/trip.dart';
 
 class HomePage extends StatefulWidget {
@@ -12,6 +13,9 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   final List<Trip> _trips = [
     Trip.of("Europa", []),
+    Trip.of("Europa2", []),
+    Trip.of("Europa3", []),
+    Trip.of("Europa4", []),
   ];
 
   void _addTrip(Trip newTrip) {
@@ -29,13 +33,7 @@ class _HomePageState extends State<HomePage> {
       body: Center(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
-          children: <Widget>[
-            Card(
-              child: Row(
-                children: [Text(_trips[0].name)],
-              ),
-            ),
-          ],
+          children: _trips.map((trip) => TripListItem(trip)).toList(),
         ),
       ),
       floatingActionButton: Row(
