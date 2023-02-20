@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import '../models/trip.dart';
-import 'package:trip_manager/pages/trip_visit_page.dart';
+import '../pages/trip_page.dart';
 
 class TripListItem extends StatelessWidget {
   final Trip trip;
@@ -17,7 +17,15 @@ class TripListItem extends StatelessWidget {
           padding: EdgeInsets.all(10),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
-            children: [Text(trip.name)],
+            children: [
+              Text(
+                trip.name,
+                style: TextStyle(
+                  fontSize: 24,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ],
           ),
         ),
       ),
