@@ -1,29 +1,34 @@
+import './means_of_transport.dart';
+
 class CityVisit {
-  final DateTime arrivalDate;
-  final DateTime departureDate;
+  final MeansOfTransport arrivalTransport;
+  final MeansOfTransport departureTransport;
   final String name;
   final String country;
   final List<String> todos;
 
   CityVisit._(
-    this.arrivalDate,
-    this.departureDate,
+    this.arrivalTransport,
+    this.departureTransport,
     this.name,
     this.country,
     this.todos,
   );
 
   static CityVisit of(
-    final DateTime arrivalDate,
-    final DateTime departureDate,
+    final MeansOfTransport arrivalTransport,
+    final MeansOfTransport departureTransport,
     final String name,
     final String country,
     List<String> todos,
   ) {
-    return CityVisit._(arrivalDate, departureDate, name, country, todos);
+    return CityVisit._(
+        arrivalTransport, departureTransport, name, country, todos);
   }
 
   int get daysOfVisit {
-    return (departureDate.difference(arrivalDate).inHours / 24).round();
+    return (departureTransport.time.difference(arrivalTransport.time).inHours /
+            24)
+        .round();
   }
 }

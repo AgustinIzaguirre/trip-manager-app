@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:trip_manager/models/means_of_transport.dart';
+import 'package:trip_manager/models/transport_type.dart';
 import '../models/city_visit.dart';
 import '../widgets/add_elemen_button.dart';
 import '../widgets/empty_list_widget.dart';
@@ -17,8 +19,8 @@ class CityVisitPage extends StatelessWidget {
       body: Center(
         child: Column(
           children: [
-            _getMeansOfTransportWidget(cityVisit.arrivalDate, true),
-            _getMeansOfTransportWidget(cityVisit.departureDate, false),
+            _getMeansOfTransportWidget(cityVisit.arrivalTransport, true),
+            _getMeansOfTransportWidget(cityVisit.departureTransport, false),
             ..._getCitiVisitTodosList(cityVisit.todos),
           ],
         ),
@@ -39,10 +41,15 @@ class CityVisitPage extends StatelessWidget {
     return citiesVisitTodos.map((citiesVisitTodo) => Text("Todo")).toList();
   }
 
-  Widget _getMeansOfTransportWidget(DateTime transportTime, bool isArrival) {
+  Widget _getMeansOfTransportWidget(
+      MeansOfTransport meansOfTransport, bool isArrival) {
+    final IconData transportIcon = meansOfTransport.type == TransportType.plane
+        ? Icons.flight
+        : Icons.train;
     final Color borderColor = isArrival
         ? Color.fromARGB(255, 166, 249, 169)
         : Color.fromARGB(255, 251, 172, 166);
+    final DateTime transportTime = meansOfTransport.time;
     final String dateFormatted =
         '${transportTime.day}/${transportTime.month}/${transportTime.year} - ${transportTime.hour}:${transportTime.minute}';
     return Card(
@@ -56,7 +63,7 @@ class CityVisitPage extends StatelessWidget {
             Container(
               margin: EdgeInsets.fromLTRB(5, 0, 15, 0),
               child: Icon(
-                Icons.flight,
+                transportIcon,
                 size: 40,
                 color: Colors.grey,
               ),
@@ -74,7 +81,7 @@ class CityVisitPage extends StatelessWidget {
             Column(
               children: [
                 Text(
-                  "Buenos Aires",
+                  meansOfTransport.from,
                   style: TextStyle(
                     color: Colors.grey,
                     fontWeight: FontWeight.bold,
@@ -82,7 +89,7 @@ class CityVisitPage extends StatelessWidget {
                 ),
                 Icon(Icons.arrow_downward_rounded),
                 Text(
-                  "Madrid",
+                  meansOfTransport.to,
                   style: TextStyle(
                     color: Colors.grey,
                     fontWeight: FontWeight.bold,
