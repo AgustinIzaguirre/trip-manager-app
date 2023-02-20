@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:trip_manager/widgets/trip_list_item_widget.dart';
+import '../widgets/empty_list_widget.dart';
+import '../widgets/trip_list_item_widget.dart';
 import '../models/trip.dart';
+import '../widgets/add_elemen_button.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key, required this.title});
@@ -43,27 +45,12 @@ class _HomePageState extends State<HomePage> {
       ),
       body: Center(
         child: ListView(
-          //crossAxisAlignment: CrossAxisAlignment.center,
           children: _getTripList(_trips),
         ),
       ),
-      floatingActionButton: Row(
-        mainAxisAlignment: MainAxisAlignment.end,
-        children: [
-          RawMaterialButton(
-            onPressed: () {},
-            fillColor: Theme.of(context).primaryColor,
-            child: Row(
-              children: [
-                Text("Add trip", style: TextStyle(color: Colors.white)),
-                const Icon(
-                  Icons.add,
-                  color: Colors.white,
-                ),
-              ],
-            ),
-          ),
-        ],
+      floatingActionButton: AddElementButton(
+        "Add Trip",
+        () {},
       ),
     );
   }
@@ -71,23 +58,7 @@ class _HomePageState extends State<HomePage> {
   List<Widget> _getTripList(List<Trip> trips) {
     if (trips.isEmpty) {
       return [
-        Container(
-          margin: EdgeInsets.all(10),
-          padding: EdgeInsets.all(10),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Text(
-                "No trips yet!",
-                style: TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.grey),
-              ),
-            ],
-          ),
-        )
+        const EmptyListWidget("No trips yet!"),
       ];
     }
     return trips.map((trip) => TripListItem(trip)).toList();

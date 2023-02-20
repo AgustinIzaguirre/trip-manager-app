@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import '../models/city_visit.dart';
+import '../widgets/add_elemen_button.dart';
+import '../widgets/empty_list_widget.dart';
 import '../models/trip.dart';
 
 class TripPage extends StatelessWidget {
@@ -13,8 +16,23 @@ class TripPage extends StatelessWidget {
         title: Text(trip.name),
       ),
       body: Center(
-        child: Text(trip.name),
+        child: ListView(
+          children: _getCitiVisitList(trip.cities),
+        ),
+      ),
+      floatingActionButton: AddElementButton(
+        "Add City Visit",
+        () {},
       ),
     );
+  }
+
+  List<Widget> _getCitiVisitList(List<CityVisit> citiesVisit) {
+    if (citiesVisit.isEmpty) {
+      return [
+        const EmptyListWidget("No city visits yet!"),
+      ];
+    }
+    return citiesVisit.map((cityVisit) => Text("test")).toList();
   }
 }
