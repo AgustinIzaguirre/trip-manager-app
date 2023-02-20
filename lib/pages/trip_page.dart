@@ -1,4 +1,6 @@
+
 import 'package:flutter/material.dart';
+import 'package:trip_manager/widgets/city_visit_list_item_widget.dart';
 import '../models/city_visit.dart';
 import '../widgets/add_elemen_button.dart';
 import '../widgets/empty_list_widget.dart';
@@ -33,6 +35,8 @@ class TripPage extends StatelessWidget {
         const EmptyListWidget("No city visits yet!"),
       ];
     }
-    return citiesVisit.map((cityVisit) => Text("test")).toList();
+    return citiesVisit
+        .map((cityVisit) => CityVisitListItem(cityVisit))
+        .toList();
   }
 }

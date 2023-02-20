@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../models/city_visit.dart';
 import '../widgets/empty_list_widget.dart';
 import '../widgets/trip_list_item_widget.dart';
 import '../models/trip.dart';
@@ -14,7 +15,8 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   final List<Trip> _trips = [
-    Trip.of("Europa", []),
+    Trip.of("Europa",
+        [CityVisit.of(DateTime.now(), DateTime.now(), "Madrid", "Spain", [])]),
     Trip.of("Europa2", []),
     Trip.of("Europa3", []),
     Trip.of("Europa4", []),
