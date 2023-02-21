@@ -22,7 +22,7 @@ class CityVisitListItem extends StatelessWidget {
               Container(
                 margin: EdgeInsets.fromLTRB(5, 0, 15, 0),
                 child: Flag.fromCode(
-                  FlagsCode.ES,
+                  cityVisit.country.flagsCode,
                   width: 40,
                   height: 40,
                 ),

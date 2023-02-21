@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:trip_manager/widgets/city_visit_list_item_widget.dart';
 import '../models/city_visit.dart';
@@ -35,6 +34,9 @@ class TripPage extends StatelessWidget {
         const EmptyListWidget("No city visits yet!"),
       ];
     }
+    citiesVisit.sort((visit1, visit2) =>
+        visit1.arrivalTransport.time.compareTo(visit2.arrivalTransport.time));
+
     return citiesVisit
         .map((cityVisit) => CityVisitListItem(cityVisit))
         .toList();

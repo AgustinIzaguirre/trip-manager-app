@@ -20,7 +20,7 @@ class MeansOfTransportWidget extends StatelessWidget {
         : Color.fromARGB(255, 251, 172, 166);
     final DateTime transportTime = _meansOfTransport.time;
     final String dateFormatted =
-        '${transportTime.day}/${transportTime.month}/${transportTime.year} - ${transportTime.hour}:${transportTime.minute}';
+        '${transportTime.day}/${transportTime.month.toString().padLeft(2, '0')}/${transportTime.year} - ${transportTime.hour.toString().padLeft(2, '0')}:${transportTime.minute.toString().padLeft(2, '0')}';
     return Card(
       color: borderColor,
       child: Container(
