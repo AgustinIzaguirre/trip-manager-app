@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:trip_manager/models/means_of_transport.dart';
+import 'package:trip_manager/models/todo.dart';
 import 'package:trip_manager/models/transport_type.dart';
 import '../models/city_visit.dart';
 import '../widgets/empty_list_widget.dart';
@@ -34,7 +35,7 @@ class _HomePageState extends State<HomePage> {
           ),
           "Madrid",
           Country.spain,
-          []),
+          [Todo.of("test done", true), Todo.of("test not done", false)]),
       CityVisit.of(
           MeansOfTransport.of(
             DateTime(2023, 4, 29, 19, 35),

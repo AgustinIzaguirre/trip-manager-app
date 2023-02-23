@@ -1,3 +1,5 @@
+import 'package:trip_manager/models/todo.dart';
+
 import './means_of_transport.dart';
 import '../constants/country.dart';
 
@@ -6,7 +8,7 @@ class CityVisit {
   final MeansOfTransport departureTransport;
   final String name;
   final Country country;
-  final List<String> todos;
+  final List<Todo> todos;
 
   CityVisit._(
     this.arrivalTransport,
@@ -21,7 +23,7 @@ class CityVisit {
     final MeansOfTransport departureTransport,
     final String name,
     final Country country,
-    List<String> todos,
+    List<Todo> todos,
   ) {
     return CityVisit._(
         arrivalTransport, departureTransport, name, country, todos);
