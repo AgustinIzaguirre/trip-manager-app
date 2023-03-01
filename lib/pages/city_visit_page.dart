@@ -5,6 +5,7 @@ import 'package:trip_manager/widgets/todo_list_item_widget.dart';
 import '../models/city_visit.dart';
 import '../widgets/add_elemen_button.dart';
 import '../widgets/empty_list_widget.dart';
+import '../widgets/new_todo.dart';
 
 class CityVisitPage extends StatefulWidget {
   final CityVisit cityVisit;
@@ -44,7 +45,7 @@ class _CityVisitPageState extends State<CityVisitPage> {
       ),
       floatingActionButton: AddElementButton(
         "Add Todo",
-        () {},
+        () => _startAddNewTodo(context),
       ),
     );
   }
@@ -78,5 +79,24 @@ class _CityVisitPageState extends State<CityVisitPage> {
     setState(() {
       widget.cityVisit.todos.remove(todo);
     });
+  }
+
+  void _addTodo(final Todo todo) {
+    setState(() {
+      widget.cityVisit.todos.add(todo);
+    });
+  }
+
+  void _startAddNewTodo(BuildContext context) {
+    showModalBottomSheet(
+      context: context,
+      builder: (_) {
+        return GestureDetector(
+          onTap: () {},
+          behavior: HitTestBehavior.opaque,
+          child: NewTodo(_addTodo),
+        );
+      },
+    );
   }
 }
