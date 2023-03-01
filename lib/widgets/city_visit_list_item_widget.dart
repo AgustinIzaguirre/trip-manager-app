@@ -5,7 +5,9 @@ import 'package:trip_manager/pages/city_visit_page.dart';
 
 class CityVisitListItem extends StatelessWidget {
   final CityVisit cityVisit;
-  const CityVisitListItem(this.cityVisit, {super.key});
+  final Function deleteCityVisit;
+
+  const CityVisitListItem(this.cityVisit, this.deleteCityVisit, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +24,7 @@ class CityVisitListItem extends StatelessWidget {
               Container(
                 margin: EdgeInsets.fromLTRB(5, 0, 15, 0),
                 child: Flag.fromCode(
-                  FlagsCode.ES,
+                  cityVisit.country.flagsCode,
                   width: 40,
                   height: 40,
                 ),
@@ -56,7 +58,9 @@ class CityVisitListItem extends StatelessWidget {
   }
 
   void goToCityVisitPage(BuildContext context, CityVisit cityVisit) {
-    Navigator.push(context,
-        MaterialPageRoute(builder: (context) => CityVisitPage(cityVisit)));
+    Navigator.push(
+        context,
+        MaterialPageRoute(
+            builder: (context) => CityVisitPage(cityVisit, deleteCityVisit)));
   }
 }
