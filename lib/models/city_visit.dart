@@ -34,4 +34,10 @@ class CityVisit {
             24)
         .round();
   }
+
+  bool equals(final CityVisit other) {
+    return name == other.name &&
+        arrivalTransport.time == other.arrivalTransport.time &&
+        departureTransport.time == other.departureTransport.time;
+  }
 }

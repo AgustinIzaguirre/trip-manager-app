@@ -8,7 +8,9 @@ import '../widgets/empty_list_widget.dart';
 
 class CityVisitPage extends StatefulWidget {
   final CityVisit cityVisit;
-  const CityVisitPage(this.cityVisit, {super.key});
+  final Function deleteCityVisit;
+
+  const CityVisitPage(this.cityVisit, this.deleteCityVisit, {super.key});
 
   @override
   State<CityVisitPage> createState() => _CityVisitPageState();
@@ -21,6 +23,15 @@ class _CityVisitPageState extends State<CityVisitPage> {
       appBar: AppBar(
         centerTitle: true,
         title: Text(widget.cityVisit.name),
+        actions: [
+          IconButton(
+            onPressed: () {
+              widget.deleteCityVisit(widget.cityVisit);
+              Navigator.of(context).pop();
+            },
+            icon: const Icon(Icons.delete),
+          )
+        ],
       ),
       body: Center(
         child: Column(
