@@ -189,12 +189,18 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  List<Widget> _getTripList(List<Trip> trips) {
+  List<Widget> _getTripList(final List<Trip> trips) {
     if (trips.isEmpty) {
       return [
         const EmptyListWidget("No trips yet!"),
       ];
     }
-    return trips.map((trip) => TripListItem(trip)).toList();
+    return trips.map((trip) => TripListItem(trip, _deleteTrip)).toList();
+  }
+
+  void _deleteTrip(final Trip trip) {
+    setState(
+      () => _trips.remove(trip),
+    );
   }
 }

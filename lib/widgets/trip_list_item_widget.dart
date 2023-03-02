@@ -4,7 +4,8 @@ import '../pages/trip_page.dart';
 
 class TripListItem extends StatelessWidget {
   final Trip trip;
-  const TripListItem(this.trip, {super.key});
+  final Function deleteTrip;
+  const TripListItem(this.trip, this.deleteTrip, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +34,7 @@ class TripListItem extends StatelessWidget {
   }
 
   void goToTripPage(BuildContext context, Trip trip) {
-    Navigator.push(
-        context, MaterialPageRoute(builder: (context) => TripPage(trip)));
+    Navigator.push(context,
+        MaterialPageRoute(builder: (context) => TripPage(trip, deleteTrip)));
   }
 }

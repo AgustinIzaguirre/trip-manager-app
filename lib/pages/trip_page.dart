@@ -7,7 +7,8 @@ import '../models/trip.dart';
 
 class TripPage extends StatefulWidget {
   final Trip trip;
-  const TripPage(this.trip, {super.key});
+  final Function deleteTrip;
+  const TripPage(this.trip, this.deleteTrip, {super.key});
 
   @override
   State<TripPage> createState() => _TripPageState();
@@ -20,6 +21,15 @@ class _TripPageState extends State<TripPage> {
       appBar: AppBar(
         centerTitle: true,
         title: Text(widget.trip.name),
+        actions: [
+          IconButton(
+            onPressed: () {
+              widget.deleteTrip(widget.trip);
+              Navigator.of(context).pop();
+            },
+            icon: const Icon(Icons.delete),
+          )
+        ],
       ),
       body: Center(
         child: ListView(
